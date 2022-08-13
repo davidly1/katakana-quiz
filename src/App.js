@@ -76,9 +76,6 @@ function App() {
     { romanji: 'do', katakana: 'ド'},
     { romanji: 'bo', katakana: 'ボ'},
     { romanji: 'po', katakana: 'ポ'},
-    
-
-    
   ]
 
   const [input, setInput] = useState('')
