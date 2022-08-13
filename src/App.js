@@ -86,6 +86,7 @@ function App() {
   const [streak, setStreak] = useState(0)
   const [maxStreak, setMaxStreak] = useState(0)
   const [error, setError] = useState(false)
+  const [isLight, setIsLight] = useState(false)
 
   const setRandomKatakana = () => {
     const randomLetter = Math.floor(Math.random() * katakana.length)
@@ -120,29 +121,34 @@ function App() {
   }, [])
 
   return (
-    <div className="min h-screen bg-slate-800 text-white text-center">
+    <div className={`min h-screen ${isLight ? "bg-slate-200" : "bg-slate-800"} text-white text-center`}>
       <header className='p-6 mb-8'>
-        <h1 className='text-2xl font-bold uppercase'>Katakana Quiz</h1>
-        <div>
+        <h1 className={`text-2xl font-bold uppercase ${isLight ? "text-slate-800" : "text-slate-200"} mb-4`}>Katakana Quiz</h1>
+        <div className={`${isLight ? "text-slate-800" : "text-slate-200"}`}>
           <p>{streak}/{maxStreak}</p>
         </div>
       </header>
 
-      <div className='text-9xl font-bold mb-8'>
+      <div className={`text-9xl font-bold mb-8 ${isLight ? "text-slate-800" : "text-slate-200"}`}>
         {katakana[letter].katakana}
       </div>
 
-      <div className='mb-8'>
+      <div className="mb-8">
         <form onSubmit={handleSubmit}>
           <input 
             type='text'
             value={input}
             onChange={handleChange}
-            className='block w-24 mx-auto pb-2 bg-transparent border-b-2 border-b-white outline-none text-center text-6xl'
+            className={`block w-24 mx-auto pb-2 bg-transparent border-b-2 ${isLight ? "border-b-slate-800" : "border-b-slate-200"} outline-none text-center text-6xl ${isLight ? "text-slate-800" : "text-slate-200"}`}
           />
         </form>
       </div>
       {error && <p className='text-red-600 text-center'>{error}</p>}
+      {isLight ? 
+      <button onClick={() => setIsLight(false)}
+      className="text-slate-800">Click for Dark Mode</button> : 
+      <button onClick={() => setIsLight(true)}
+      className="text-slate-200">Click for Light Mode</button>}
     </div>
   );
 }
