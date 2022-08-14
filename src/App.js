@@ -143,9 +143,9 @@ function App() {
       {error && <p className='text-red-600 text-center'>{error}</p>}
       {isLight ? 
       <button onClick={() => setIsLight(false)}
-      className="text-slate-800">Click for Dark Mode</button> : 
+      className="text-slate-800 rounded-xl bg-slate-500 p-4">Click for Dark Mode</button> : 
       <button onClick={() => setIsLight(true)}
-      className="text-slate-200">Click for Light Mode</button>}
+      className="text-slate-200 rounded-xl bg-slate-500 p-4">Click for Light Mode</button>}
     </div>
   );
 }
