@@ -100,12 +100,12 @@ function App() {
       setStreak (streak + 1)
       setMaxStreak(Math.max(streak + 1, maxStreak))
       setError(false)
-      localStorage.setItem('maxStreak', Math.max(streak, maxStreak))
-      localStorage.setItem('streak', streak + 1)
+      sessionStorage.setItem('maxStreak', Math.max(streak, maxStreak))
+      sessionStorage.setItem('streak', streak + 1)
     } else {
       setStreak(0)
       setError(`The correct answer for ${katakana[letter].katakana} is ${katakana[letter].romanji}`)
-      localStorage.setItem('streak', 0)
+      sessionStorage.setItem('streak', 0)
     }
     setInput('')
     setRandomKatakana()
@@ -113,8 +113,8 @@ function App() {
 
   useEffect(() => {
     setRandomKatakana()
-    setStreak(parseInt(localStorage.getItem('streak')) || 0)
-    setMaxStreak(parseInt(localStorage.getItem('maxStreak')) || 0)
+    setStreak(parseInt(sessionStorage.getItem('streak')) || 0)
+    setMaxStreak(parseInt(sessionStorage.getItem('maxStreak')) || 0)
   }, [])
 
   return (
