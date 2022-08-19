@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Button from './Button'
+import Input from './Input'
 
 function App() {
   const katakana = [
@@ -90,9 +92,7 @@ function App() {
     setLetter(randomLetter)
   }
 
-  const handleChange = (e) => {
-    setInput(e.target.value)
-  }
+  const handleChange = (e) => setInput(e.target.value)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -109,6 +109,10 @@ function App() {
     }
     setInput('')
     setRandomKatakana()
+  }
+
+  const handleButtonClick = () => {
+    isLight ? setIsLight(false) : setIsLight(true)
   }
 
   useEffect(() => {
@@ -132,20 +136,18 @@ function App() {
 
       <div className="mb-8">
         <form onSubmit={handleSubmit}>
-          <input 
-            type='text'
-            value={input}
-            onChange={handleChange}
-            className={`block w-24 mx-auto pb-2 bg-transparent border-b-2 ${isLight ? "border-b-slate-800" : "border-b-slate-200"} outline-none text-center text-6xl ${isLight ? "text-slate-800" : "text-slate-200"}`}
+          <Input 
+          input={input} 
+          handleChange={handleChange} 
+          isLight={isLight}
           />
         </form>
       </div>
       {error && <p className='text-red-600 text-center'>{error}</p>}
-      {isLight ? 
-      <button onClick={() => setIsLight(false)}
-      className="text-slate-800 rounded-xl bg-slate-500 p-4">Click for Dark Mode</button> : 
-      <button onClick={() => setIsLight(true)}
-      className="text-slate-200 rounded-xl bg-slate-500 p-4">Click for Light Mode</button>}
+      <Button 
+      isLight={isLight} 
+      handleButtonClick={handleButtonClick}
+      />
     </div>
   );
 }
